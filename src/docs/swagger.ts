@@ -1,19 +1,34 @@
 import swaggerJsdoc from 'swagger-jsdoc';
 
-export const swaggerOptions: swaggerJsdoc.Options = {
+const options: swaggerJsdoc.Options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'Secure Wallet API',
+      title: 'Wallet API',
       version: '1.0.0',
-      description: 'API documentation for wallet service',
+      description: 'API documentation for Wallet System',
     },
     servers: [
       {
-        url: 'http://localhost:5001',
+        url: 'http://localhost:5001/api/v1',
+      },
+    ],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
+    },
+    security: [
+      {
+        bearerAuth: [],
       },
     ],
   },
-  // remaining: need to change route
-  apis: ['./src/routes/*.ts'],
+  apis: ['src/app/modules/**/*.ts'],
 };
+
+export const swaggerSpec = swaggerJsdoc(options);

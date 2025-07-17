@@ -8,7 +8,7 @@ import status from 'http-status';
 const getWalletBalance = catchAsync(async (req: Request, res: Response) => {
     const userId = Number(req.params.userId);
 
-    const result = await WalletService.getWalletBalanceFromDB(userId);
+    const result = await WalletService.getWalletBalanceFromDB(userId, req.user.id);
 
     sendResponse(res, {
         statusCode: status.OK,

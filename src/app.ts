@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import express, { Application, Request, Response, NextFunction } from 'express';
 import cors from 'cors';
+import swaggerUi from 'swagger-ui-express';
+import { swaggerSpec } from './docs/swagger';
 
 
 import cookieParser from 'cookie-parser';
@@ -18,8 +20,10 @@ app.use(cookieParser());
 // application routes
 app.use('/api/v1', router);
 
-app.get('/', (req: Request, res: Response) => {});
+app.get('/', (req: Request, res: Response) => { });
 
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 app.use(globalErrorHandler);
 app.use(notFound);
 

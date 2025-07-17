@@ -11,7 +11,7 @@ const moduleRoutes = [
     route: AuthRoutes,
   },
   {
-    path: '/wallet',
+    path: '/wallets',
     route: WalletRoutes,
   },
   {

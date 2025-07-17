@@ -5,7 +5,11 @@ import status from 'http-status';
 
 const prisma = new PrismaClient();
 
-const getWalletBalanceFromDB = async (userId: number) => {
+const getWalletBalanceFromDB = async (userId: number, userIdFromToken: number) => {
+  if (userId != userIdFromToken) {
+    throw new ErrorFormat(status.UNAUTHORIZED, 'You are not authorized.')
+  }
+
   const wallet = await prisma.wallet.findUnique({
     where: { userId },
   });
