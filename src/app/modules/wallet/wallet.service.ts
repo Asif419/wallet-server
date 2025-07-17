@@ -1,9 +1,8 @@
-import { PrismaClient } from '@prisma/client';
 import { ITopUpInput } from './wallet.interface';
 import ErrorFormat from '../../errors/ErrorFormat';
 import status from 'http-status';
 
-const prisma = new PrismaClient();
+import prisma from '../../config/prisma';
 
 const getWalletBalanceFromDB = async (userId: number, userIdFromToken: number) => {
   if (userId != userIdFromToken) {

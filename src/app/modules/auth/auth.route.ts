@@ -1,23 +1,71 @@
 /**
  * @swagger
- * /wallets/top-up:
- *   patch:
- *     summary: Top up wallet
- *     tags: [Wallet]
- *     security:
- *       - bearerAuth: []
+ * /auth/register:
+ *   post:
+ *     summary: Register a new user
+ *     tags: [Auth]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
  *             type: object
+ *             required:
+ *               - email
+ *               - password
  *             properties:
- *               amount:
- *                 type: number
+ *               email:
+ *                 type: string
+ *                 format: email
+ *                 example: user@example.com
+ *               password:
+ *                 type: string
+ *                 format: password
+ *                 example: strongPassword123
+ *     responses:
+ *       201:
+ *         description: User registered successfully
+ *       400:
+ *         description: Invalid request or user already exists
+ */
+
+/**
+ * @swagger
+ * /auth/login:
+ *   post:
+ *     summary: Log in a user
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *               - password
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 format: email
+ *                 example: user@example.com
+ *               password:
+ *                 type: string
+ *                 format: password
+ *                 example: strongPassword123
  *     responses:
  *       200:
- *         description: Wallet updated
+ *         description: User logged in successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 accessToken:
+ *                   type: string
+ *                   description: JWT token for authenticated requests
+ *       401:
+ *         description: Invalid credentials
  */
 
 import express from 'express';

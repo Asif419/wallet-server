@@ -1,7 +1,6 @@
 export interface IRegisterInput {
   email: string;
   password: string;
-  role: 'user' | 'admin';
 }
 
 export interface ILoginInput {
@@ -12,7 +11,6 @@ export interface ILoginInput {
 interface IUserWithWallet {
   id: number;
   email: string;
-  role: string;
   wallet: {
     id: number;
     balance: number;

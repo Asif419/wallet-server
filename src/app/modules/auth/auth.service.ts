@@ -1,4 +1,3 @@
-import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt';
 import { ILoginInput, IRegisterInput } from './auth.interface';
 import { createToken } from './auth.utils';
@@ -6,7 +5,8 @@ import config from '../../config';
 import status from 'http-status';
 import ErrorFormat from '../../errors/ErrorFormat';
 
-const prisma = new PrismaClient();
+
+import prisma from '../../config/prisma';
 
 const registerUser = async (payload: IRegisterInput) => {
   const { email, password} = payload;
@@ -44,17 +44,14 @@ const registerUser = async (payload: IRegisterInput) => {
 
   const token = createToken(payloadofJWT, secret);
 
-  if (!user.wallet) {
-    throw new ErrorFormat(status.NOT_FOUND, 'Wallet not found');
-  }
 
   return {
     user: {
       id: user.id,
       email: user.email,
       wallet: {
-        id: user.wallet.id,
-        balance: user.wallet.balance,
+        id: user.wallet?.id,
+        balance: user.wallet?.balance,
       },
     },
     accessToken: token,

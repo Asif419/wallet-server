@@ -1,9 +1,8 @@
-import { PrismaClient } from '@prisma/client';
 import ErrorFormat from '../../errors/ErrorFormat';
 import status from 'http-status';
 import { ITransaction } from './transaction.interface';
 
-const prisma = new PrismaClient();
+import prisma from '../../config/prisma';
 
 const createTransactionFromDB = async (payload: ITransaction) => {
   const { userId, walletId, type, amount } = payload;
