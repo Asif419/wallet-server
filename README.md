@@ -6,14 +6,14 @@ A backend API for a digital wallet system, supporting user authentication, balan
 
 ## Features
 
-- ✅ User registration and login with **JWT authentication**
-- ✅ Fetch wallet balance (protected)
-- ✅ Top-up wallet amount
-- ✅ View transaction history
-- ✅ Input validation with **Zod**
-- ✅ Error handling with custom middleware
-- ✅ API documentation with **Swagger**
-- ✅ Unit testing with **Jest**
+-  User registration and login with **JWT authentication**
+-  Fetch wallet balance (protected)
+-  Top-up wallet amount
+-  View transaction history
+-  Input validation with **Zod**
+-  Error handling with custom middleware
+-  API documentation with **Swagger**
+-  Unit testing with **Jest**
 
 ---
 
@@ -35,18 +35,17 @@ A backend API for a digital wallet system, supporting user authentication, balan
 
 ## Folder Structure
 src/ <br>
-│<br>
-|--- app/<br>
-│   |-- modules/<br>
-│   │     |-- auth/           # Auth controllers, services, routes<br>
-│   │     |-- wallet/         # Wallet logic and endpoints <br>
-│   │     |-- transaction/    # Transaction history functionality <br>
-│   |-- config/               # Environment, database config (Prisma) <br>
-│   |-- middlewares/          # Global error handling, JWT auth, validation <br>
-│   |-- utils/                # Custom utility functions (e.g., sendResponse) <br>
-│   |-- constants/            # Status codes, messages <br>
-|--- tests/                   # Unit tests using Jest <br>
-|--- index.ts                 # Main server entry point <br>
+|----app/<br>
+│----|----modules/<br>
+│----│--------|... auth/          # Auth controllers, services, routes<br>
+│----│--------|... wallet/        # Wallet logic and endpoints <br>
+│----│--------|... transaction/   # Transaction history functionality <br>
+│----|----config/                 # Environment, database config (Prisma) <br>
+│----|----middlewares/            # Global error handling, JWT auth, validation <br>
+│----|----utils/                  # Custom utility functions (e.g., sendResponse) <br>
+│----|----constants/              # Status codes, messages <br>
+|----tests/                       # Unit tests using Jest <br>
+|----index.ts                     # Main server entry point <br>
 
 ---
 
@@ -87,11 +86,19 @@ API runs at: http://localhost:5001
 
 ---
 
+## API Authentication
+Use JWT token in header:
+```
+Authorization: Bearer <your_token>
+```
+
+---
+
 ## 📄 API Documentation
 
 Interactive API documentation is available via **Swagger UI**:
 
-- URL: `http://localhost:5001/api/v1/docs`
+- URL: `http://localhost:5001/api-docs`
 
 It provides:
 - Descriptions for all endpoints
@@ -101,7 +108,7 @@ It provides:
 
 ---
 
-## 🧪 Unit Testing
+## Unit Testing
 
 Unit tests are written using **Jest**.
 
@@ -110,7 +117,57 @@ Unit tests are written using **Jest**.
 
 To run tests:
 ```bash
-npm test
+npm run test:jest
 ```
 
+---
+
 ## Test Output (example)
+```
+ PASS  __tests__/auth/auth.service.test.ts
+ PASS  __tests__/wallet/wallet.service.test.ts
+ PASS  __tests__/transaction/transaction.service.test.ts
+
+Test Suites: 3 passed
+Tests:       8 passed
+Coverage:    90%+
+```
+
+---
+
+## Sample API Requests (Postman)
+
+### login
+```
+POST /api/v1/auth/login
+{
+  "email": "asif@mail.com",
+  "password": "securepass"
+}
+```
+
+### top-up
+```
+PATCH /api/v1/wallets/top-up
+Authorization: Bearer <token>
+{
+  "amount": 100
+}
+```
+
+---
+
+## Demo Video
+- YouTube Walkthrough: # demo `youtube.com`
+
+---
+
+## 👨‍💻 Author
+
+**Asif Shahariar**  
+Backend Developer  
+- 📧 Email: [asifshahariar419@gmail.com](mailto:asifshahariar419@mail.com)  
+- 🌐 GitHub: [github.com/Asif419](https://github.com/Asif419/wallet-server)  
+- 💼 LinkedIn: [linkedin.com/in/asifshahariar](https://www.linkedin.com/in/asifshahariar/)
+
+---
