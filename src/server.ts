@@ -3,13 +3,15 @@ import { Server } from 'http';
 import { PrismaClient } from '@prisma/client';
 import config from './app/config';
 
+// connect to prisma DB
 const prisma = new PrismaClient();
 let server: Server;
 
 async function main() {
   try {
     await prisma.$connect();
-
+  
+    // start the server
     server = app.listen(config.port, () => {
       console.log(`App listening on port ${config.port}`);
     });
