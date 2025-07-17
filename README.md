@@ -37,15 +37,15 @@ A backend API for a digital wallet system, supporting user authentication, balan
 src/ <br>
 |----app/<br>
 │----|----modules/<br>
-│----│--------|... auth/          # Auth controllers, services, routes<br>
-│----│--------|... wallet/        # Wallet logic and endpoints <br>
-│----│--------|... transaction/   # Transaction history functionality <br>
-│----|----config/                 # Environment, database config (Prisma) <br>
-│----|----middlewares/            # Global error handling, JWT auth, validation <br>
-│----|----utils/                  # Custom utility functions (e.g., sendResponse) <br>
-│----|----constants/              # Status codes, messages <br>
-|----tests/                       # Unit tests using Jest <br>
-|----index.ts                     # Main server entry point <br>
+│----│--------|...auth/...............# Auth controllers, services, routes<br>
+│----│--------|...wallet/.............# Wallet logic and endpoints <br>
+│----│--------|...transaction/........# Transaction history functionality <br>
+│----|----config/.....................# Environment, database config (Prisma) <br>
+│----|----middlewares/................# Global error handling, JWT auth, validation <br>
+│----|----utils/......................# Custom utility functions (e.g., sendResponse) <br>
+│----|----constants/..................# Status codes, messages <br>
+|----tests/...........................# Unit tests using Jest <br>
+|----index.ts.........................# Main server entry point <br>
 
 ---
 
@@ -54,7 +54,7 @@ src/ <br>
 ### 1. Clone the repository and navigate to the project folder:
 
 ```bash
-git clone https://github.com/yourusername/wallet-api.git
+git clone https://github.com/Asif419/wallet-server
 cd wallet-api
 ```
 
@@ -69,7 +69,7 @@ PORT=5001
 DATABASE_URL=postgresql://your_db_user:your_password@localhost:5432/your_db_name
 JWT_ACCESS_SECRET=your_jwt_secret
 BCRYPT_SALT_ROUNDS=12
-JWT_ACCESS_EXPIRES_IN=
+JWT_ACCESS_EXPIRES_IN=1d
 ```
 
 ### 4. Run Prisma migrations and generate the client:
@@ -79,14 +79,16 @@ npx prisma generate
 ```
 
 ### 5. Start the development server:
-```npm run start:dev
+```
+npm run start:dev
 ```
 
-API runs at: http://localhost:5001
+### API runs at: http://localhost:5001
 
 ---
 
 ## API Authentication
+
 Use JWT token in header:
 ```
 Authorization: Bearer <your_token>
@@ -98,7 +100,7 @@ Authorization: Bearer <your_token>
 
 Interactive API documentation is available via **Swagger UI**:
 
-- URL: `http://localhost:5001/api-docs`
+- URL: [http://localhost:5001/api-docs](http://localhost:5001/api-docs)
 
 It provides:
 - Descriptions for all endpoints
@@ -155,6 +157,19 @@ Authorization: Bearer <token>
 }
 ```
 
+### get-balance
+```
+GET /api/v1/wallets/{userId}
+Authorization: Bearer <token>
+```
+### transactions
+```
+GET /api/v1/transactions/{userId}
+Authorization: Bearer <token>
+{
+  "amount": 500.23
+}
+```
 ---
 
 ## Demo Video
