@@ -173,7 +173,7 @@ Authorization: Bearer <token>
 ---
 
 ## Demo Video
-- YouTube Walkthrough: # demo `youtube.com`
+- YouTube Walkthrough: [Video Explanation](https://youtu.be/qMNXElf_uBc)  
 
 ---
 
