@@ -34,19 +34,19 @@ A backend API for a digital wallet system, supporting user authentication, balan
 ---
 
 ## Folder Structure
-src/
-│
-|--- app/
-│   |-- modules/
-│   │     |-- auth/           # Auth controllers, services, routes
-│   │     |-- wallet/         # Wallet logic and endpoints
-│   │     |-- transaction/    # Transaction history functionality
-│   |-- config/               # Environment, database config (Prisma)
-│   |-- middlewares/          # Global error handling, JWT auth, validation
-│   |-- utils/                # Custom utility functions (e.g., sendResponse)
-│   |-- constants/            # Status codes, messages
-|--- tests/                   # Unit tests using Jest
-|--- index.ts                 # Main server entry point
+src/ <br>
+│<br>
+|--- app/<br>
+│   |-- modules/<br>
+│   │     |-- auth/           # Auth controllers, services, routes<br>
+│   │     |-- wallet/         # Wallet logic and endpoints <br>
+│   │     |-- transaction/    # Transaction history functionality <br>
+│   |-- config/               # Environment, database config (Prisma) <br>
+│   |-- middlewares/          # Global error handling, JWT auth, validation <br>
+│   |-- utils/                # Custom utility functions (e.g., sendResponse) <br>
+│   |-- constants/            # Status codes, messages <br>
+|--- tests/                   # Unit tests using Jest <br>
+|--- index.ts                 # Main server entry point <br>
 
 ---
 
@@ -57,11 +57,13 @@ src/
 ```bash
 git clone https://github.com/yourusername/wallet-api.git
 cd wallet-api
-`
+```
+
 ### 2. Install dependencies:
 ```bash
 npm install
-`
+```
+
 ### 3. Create a .env file in the root of the project and add the following:
 ```bash
 PORT=5001
@@ -69,16 +71,18 @@ DATABASE_URL=postgresql://your_db_user:your_password@localhost:5432/your_db_name
 JWT_ACCESS_SECRET=your_jwt_secret
 BCRYPT_SALT_ROUNDS=12
 JWT_ACCESS_EXPIRES_IN=
-`
+```
 
 ### 4. Run Prisma migrations and generate the client:
 ```bash
 npx prisma migrate dev --name init
 npx prisma generate
-`
+```
+
 ### 5. Start the development server:
 ```npm run start:dev
-`
+```
+
 API runs at: http://localhost:5001
 
 ---
@@ -107,5 +111,6 @@ Unit tests are written using **Jest**.
 To run tests:
 ```bash
 npm test
+```
 
-
+## Test Output (example)
