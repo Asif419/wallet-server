@@ -1,10 +1,10 @@
-# 💼 Secure Wallet API
+# Secure Wallet API
 
 A backend API for a digital wallet system, supporting user authentication, balance management, top-up functionality, and transaction history — built with **Node.js**, **Express**, **Prisma**, and **PostgreSQL**.
 
 ---
 
-## 🚀 Features
+## Features
 
 - ✅ User registration and login with **JWT authentication**
 - ✅ Fetch wallet balance (protected)
@@ -17,7 +17,7 @@ A backend API for a digital wallet system, supporting user authentication, balan
 
 ---
 
-## ⚙️ Tech Stack
+## Tech Stack
 
 | Tool           | Usage                         |
 |----------------|-------------------------------|
@@ -33,24 +33,31 @@ A backend API for a digital wallet system, supporting user authentication, balan
 
 ---
 
-## 📁 Folder Structure
+## Folder Structure
 src/
 │
 ├── app/
 │   ├── modules/
+
 │   │   ├── auth/             # Auth controllers, services, routes
+
 │   │   ├── wallet/           # Wallet logic and endpoints
+
 │   │   └── transaction/      # Transaction history functionality
+
 │   ├── config/               # Environment, database config (Prisma)
+
 │   ├── middlewares/          # Global error handling, JWT auth, validation
+
 │   ├── utils/                # Custom utility functions (e.g., sendResponse)
+
 │   └── constants/            # Status codes, messages
 ├── tests/                    # Unit tests using Jest
 └── index.ts                  # Main server entry point
 
 ---
 
-## 🛠️ Setup Instructions
+## Setup Instructions
 
 Clone the repository and navigate to the project folder:
 
