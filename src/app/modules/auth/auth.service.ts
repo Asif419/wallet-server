@@ -3,6 +3,8 @@ import bcrypt from 'bcrypt';
 import { ILoginInput, IRegisterInput } from './auth.interface';
 import { createToken } from './auth.utils';
 import config from '../../config';
+import status from 'http-status';
+import ErrorFormat from '../../errors/ErrorFormat';
 
 const prisma = new PrismaClient();
 
@@ -14,7 +16,7 @@ const registerUser = async (payload: IRegisterInput) => {
     where: { email },
   });
   if (existingUser) {
-    throw new Error('User already exists with this email');
+    throw new ErrorFormat(status.CONFLICT, 'User already exists with this email');
   }
 
   // Hash password
@@ -43,7 +45,7 @@ const registerUser = async (payload: IRegisterInput) => {
   const token = createToken(payloadofJWT, secret);
 
   if (!user.wallet) {
-    throw new Error('Wallet not found');
+    throw new ErrorFormat(status.NOT_FOUND, 'Wallet not found');
   }
 
   return {
@@ -68,12 +70,12 @@ const loginUser = async (payload: ILoginInput) => {
   });
 
   if (!user) {
-    throw new Error('User not found');
+    throw new ErrorFormat(status.NOT_FOUND, 'User not found');
   }
 
   const isPasswordMatch = await bcrypt.compare(password, user.password);
   if (!isPasswordMatch) {
-    throw new Error('Invalid password');
+    throw new ErrorFormat(status.UNAUTHORIZED, 'Invalid password');
   }
 
   // Generate JWT token

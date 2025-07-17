@@ -6,9 +6,10 @@ import config from '../config';
 import handleZodError from '../errors/handleZodErrors';
 import { TErrorSources } from '../interface/error';
 import handlePrismaError from '../errors/handlePrismaErrors';
-import AppError from '../errors/appError';
+import ErrorFormat from '../errors/ErrorFormat';
 
 const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
+    console.log('yes, ---------------2');
     let statusCode = 500;
     let message = 'Something went wrong';
     let errorSources: TErrorSources = [
@@ -18,7 +19,6 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
         },
     ];
 
-    // Zod validation error
     if (err instanceof ZodError) {
         const simplified = handleZodError(err);
         statusCode = simplified.statusCode;
@@ -31,7 +31,8 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
         statusCode = simplified.statusCode;
         message = simplified.message;
         errorSources = simplified.errorSources;
-    } else if (err instanceof AppError) {
+    } else if (err instanceof ErrorFormat) {
+        console.log('yes, ---------------');
         statusCode = err.statusCode;
         message = err.message;
         errorSources = [
@@ -41,6 +42,7 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
             },
         ];
     } else if (err instanceof Error) {
+        console.log('yes, ---------------1');
         message = err.message;
         errorSources = [
             {
