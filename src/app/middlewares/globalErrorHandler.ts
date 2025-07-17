@@ -9,7 +9,6 @@ import handlePrismaError from '../errors/handlePrismaErrors';
 import ErrorFormat from '../errors/ErrorFormat';
 
 const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
-    console.log('yes, ---------------2');
     let statusCode = 500;
     let message = 'Something went wrong';
     let errorSources: TErrorSources = [
@@ -31,8 +30,17 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
         statusCode = simplified.statusCode;
         message = simplified.message;
         errorSources = simplified.errorSources;
-    } else if (err instanceof ErrorFormat) {
-        console.log('yes, ---------------');
+    } else if (err instanceof Prisma.PrismaClientValidationError) {
+        statusCode = 400;
+        message = 'Validation error from Prisma';
+        errorSources = [
+            {
+                path: '',
+                message: err.message,
+            },
+        ];
+    }
+    else if (err instanceof ErrorFormat) {
         statusCode = err.statusCode;
         message = err.message;
         errorSources = [
@@ -42,7 +50,6 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
             },
         ];
     } else if (err instanceof Error) {
-        console.log('yes, ---------------1');
         message = err.message;
         errorSources = [
             {
