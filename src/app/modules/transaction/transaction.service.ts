@@ -20,7 +20,11 @@ const createTransactionFromDB = async (payload: ITransaction) => {
   return transaction;
 };
 
-const getUserTransactionsFromDB = async (userId: number) => {
+const getUserTransactionsFromDB = async (userId: number, userIdFromToken: number) => {
+  if (userId != userIdFromToken) {
+    throw new ErrorFormat(status.UNAUTHORIZED, 'You are not authorized.')
+  }
+
   const transactions = await prisma.transaction.findMany({
     where: { userId },
     orderBy: { createdAt: 'desc' },
