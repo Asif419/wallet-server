@@ -1,0 +1,41 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  password String
+
+  wallet   Wallet? @relation("UserWallet")
+
+  transactions Transaction[]
+}
+
+
+model Wallet {
+  id       Int      @id @default(autoincrement())
+  user     User     @relation("UserWallet", fields: [userId], references: [id]) // 👈 MATCHING name
+  userId   Int      @unique
+  balance  Float    @default(0)
+
+  transactions Transaction[]
+}
+
+model Transaction {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+
+  wallet    Wallet   @relation(fields: [walletId], references: [id])
+  walletId  Int
+
+  amount    Float
+  type      String
+  createdAt DateTime @default(now())
+}
