@@ -23,8 +23,6 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
         statusCode = simplified.statusCode;
         message = simplified.message;
         errorSources = simplified.errorSources;
-
-        // Prisma known client errors
     } else if (err instanceof Prisma.PrismaClientKnownRequestError) {
         const simplified = handlePrismaError(err);
         statusCode = simplified.statusCode;

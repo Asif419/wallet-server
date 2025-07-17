@@ -1,4 +1,3 @@
-// src/errors/handlePrismaError.ts
 import { Prisma } from '@prisma/client';
 import { TGenericErrorResponse } from '../interface/error';
 

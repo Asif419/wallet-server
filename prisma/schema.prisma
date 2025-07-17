@@ -20,7 +20,7 @@ model User {
 
 model Wallet {
   id       Int      @id @default(autoincrement())
-  user     User     @relation("UserWallet", fields: [userId], references: [id]) // 👈 MATCHING name
+  user     User     @relation("UserWallet", fields: [userId], references: [id])
   userId   Int      @unique
   balance  Float    @default(0)
 
